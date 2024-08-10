@@ -43,13 +43,16 @@ class HangmanGame{
     }
     // check if it's right
     private void guessWasRight(char guess, String chosen){
-        for (int i = 0; i < chosen.length(); ++i)
-            if (guess == chosen.charAt(i)){
+        boolean isRight = false;
+        for (int i = 0; i < chosen.length(); ++i){
+            if (guess == chosen.charAt(i) && currentBox[i] != guess){
                 modify(i, guess);
                 score += 100;
-                return;
+                isRight = true;
             }
-        numberOfGuessLeft--;
+        }
+        if (!isRight)
+            numberOfGuessLeft--;
     }
     // modifies the word box
     private void modify(int loc, char guess){
